@@ -47,8 +47,8 @@ class Etiqueta extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getEtiquetasPeliculas()
+    public function getEtiquetadas()
     {
-        return $this->hasMany(EtiquetasPeliculas::className(), ['etiqueta_id' => 'id'])->inverseOf('etiqueta');
+        return $this->hasMany(Etiquetada::className(), ['etiqueta_id' => 'id'])->inverseOf('etiqueta');
     }
 }

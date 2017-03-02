@@ -4,18 +4,17 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Pelicula */
+/* @var $model app\models\Etiquetada */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Peliculas', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Etiquetadas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="pelicula-view">
+<div class="etiquetada-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Añadir etiquetas', ['etiquetada', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
@@ -30,10 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'titulo',
-            'sinopsis:ntext',
-            'duracion',
-            'anio',
+            'etiqueta_id',
+            'pelicula_id',
         ],
     ]) ?>
 

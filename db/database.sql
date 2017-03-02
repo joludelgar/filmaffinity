@@ -24,7 +24,8 @@ create table etiquetas_peliculas (
                              on delete no action on update cascade,
     pelicula_id bigint       not null constraint fk_etiquetas_peliculas_peliculas
                              references peliculas (id)
-                             on delete no action on update cascade
+                             on delete no action on update cascade,
+    constraint uq_etiquetas_peliculas unique (etiqueta_id, pelicula_id)
 );
 
 drop table if exists usuarios cascade;

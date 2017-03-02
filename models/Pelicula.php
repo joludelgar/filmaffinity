@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\Etiquetada;
 
 /**
  * This is the model class for table "peliculas".
@@ -55,8 +56,8 @@ class Pelicula extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getEtiquetasPeliculas()
+    public function getEtiquetadas()
     {
-        return $this->hasMany(EtiquetasPeliculas::className(), ['pelicula_id' => 'id'])->inverseOf('pelicula');
+        return $this->hasMany(Etiquetada::className(), ['pelicula_id' => 'id'])->inverseOf('pelicula');
     }
 }

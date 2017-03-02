@@ -3,17 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Pelicula;
 use app\models\Etiquetada;
-use app\models\PeliculaSearch;
+use app\models\EtiquetadaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PeliculasController implements the CRUD actions for Pelicula model.
+ * EtiquetadasController implements the CRUD actions for Etiquetada model.
  */
-class PeliculasController extends Controller
+class EtiquetadasController extends Controller
 {
     /**
      * @inheritdoc
@@ -31,12 +30,12 @@ class PeliculasController extends Controller
     }
 
     /**
-     * Lists all Pelicula models.
+     * Lists all Etiquetada models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PeliculaSearch();
+        $searchModel = new EtiquetadaSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -46,7 +45,7 @@ class PeliculasController extends Controller
     }
 
     /**
-     * Displays a single Pelicula model.
+     * Displays a single Etiquetada model.
      * @param integer $id
      * @return mixed
      */
@@ -58,25 +57,25 @@ class PeliculasController extends Controller
     }
 
     /**
-     * Creates a new Pelicula model.
+     * Creates a new Etiquetada model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Pelicula();
+        $model = new Etiquetada();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
-                'model' => $model,
+                'model' => $model
             ]);
         }
     }
 
     /**
-     * Updates an existing Pelicula model.
+     * Updates an existing Etiquetada model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -94,24 +93,8 @@ class PeliculasController extends Controller
         }
     }
 
-    public function actionEtiquetada($id)
-    {
-        $model = $this->findModel($id);
-
-        $model2 = new Etiquetada();
-        $model2->pelicula_id = $id;
-
-        if ($model2->load(Yii::$app->request->post()) && $model2->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('etiquetas', [
-                'model' => $model2
-            ]);
-        }
-    }
-
     /**
-     * Deletes an existing Pelicula model.
+     * Deletes an existing Etiquetada model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -124,32 +107,18 @@ class PeliculasController extends Controller
     }
 
     /**
-     * Finds the Pelicula model based on its primary key value.
+     * Finds the Etiquetada model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Pelicula the loaded model
+     * @return Etiquetada the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Pelicula::findOne($id)) !== null) {
+        if (($model = Etiquetada::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
-    }
-
-    public function actionAjax($titulo)
-    {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Pelicula::find()->where(['ilike', 'titulo', $titulo]),
-            'pagination' => [
-                'pageSize' => 5,
-            ],
-            'sort' => false,
-        ]);
-        return $this->renderAjax('_ajax', [
-            'dataProvider' => $dataProvider,
-        ]);
     }
 }
